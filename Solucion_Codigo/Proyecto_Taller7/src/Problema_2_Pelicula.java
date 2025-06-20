@@ -22,7 +22,11 @@ Note
  */
 public class Problema_2_Pelicula {
     public static void main(String[] args) {
+        Pelicula pelicula1 = new Pelicula("Stich", "Pepe", "1");
+        Pelicula pelicula2 = new Pelicula("Stich", "15", "1");
         
+        VHS vhs1 = new VHS("ESP", pelicula1, 1.0);
+        System.out.println(vhs1);
     }
 }
 
@@ -55,7 +59,7 @@ class DVD extends SoportePelicula{
 
     @Override
     public String toString() {
-        return "DVD{" + "idioma=" + idioma + ", pelicula=" + pelicula + '}';
+        return "DVD{" + "idioma=" + idioma + ", pelicula=" + pelicula + '}' + super.toString();
     }
 }
 
@@ -71,10 +75,25 @@ class VHS extends SoportePelicula{
 
     @Override
     public String toString() {
-        return "VHS{" + "idioma=" + idioma + ", pelicula=" + pelicula + '}';
+        return "VHS{" + "idioma=" + idioma + ", pelicula=" + pelicula + '}' + super.toString();
     }
 }
 
 class Pelicula {
+    public String titulo;
+    public String autor;
+    public String anioEdicion;
+
+    public Pelicula(String titulo, String autor, String anioEdicion) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.anioEdicion = anioEdicion;
+    }
     
+    
+
+    @Override
+    public String toString() {
+        return "Pelicula{" + "titulo=" + titulo + ", autor=" + autor + ", anioEdicion=" + anioEdicion + '}';
+    }
 }
