@@ -134,15 +134,16 @@ public class Problema5_Entrada {
             entradas.add(normal);
             System.out.println(normal.toString());
         } else if(entrada.equals("abonado")) {
-            if(!doc.equals("abonado")) {
+            if(doc.equals("abonado")) {
+                EntradaAbonado abonado = new EntradaAbonado(id, zona, nombre + " " + apellido);
+                abonado.calcularPrecio();
+                zonaSeleccionada.registrarVenta();
+                entradas.add(abonado);
+                System.out.println(abonado.toString());
+            } else {
                 System.out.println("Usted no tiene un documento de abonado.");
                 return;
-            }
-            EntradaAbonado abonado = new EntradaAbonado(id, zona, nombre + " " + apellido);
-            abonado.calcularPrecio();
-            zonaSeleccionada.registrarVenta();
-            entradas.add(abonado);
-            System.out.println(abonado.toString());
+            }            
         } else if(entrada.equals("reducida")) {
             if(doc.equals("estudiante") || doc.equals("pensionista")) {
                 EntradaReducida reducida = new EntradaReducida(id, zona, nombre + " " + apellido);
@@ -178,6 +179,10 @@ class Zona {
     public double precioNormal;
     public double precioAbonado;
     public int vendidas;
+    
+    public Zona() {
+        // Constructor vacío
+    }
 
     public Zona(String nombre, int capacidad, double precioNormal, double precioAbonado) {
         this.nombre = nombre;
@@ -188,11 +193,11 @@ class Zona {
     }
 
     public boolean hayDisponibilidad() {
-        return vendidas < capacidad;
+        return this.vendidas < this.capacidad;
     }
 
     public void registrarVenta() {
-        vendidas++;
+        this.vendidas++;
     }    
 }
 
@@ -200,6 +205,11 @@ class Entrada {
     public String id;
     public Zona zona;
     public String comprador;
+    public double precio;
+    
+    public Entrada() {
+        // Constructor vacío
+    }
 
     public Entrada(String id, Zona zona, String comprador) {
         this.id = id;
@@ -219,7 +229,10 @@ class Entrada {
 }
 
 class EntradaNormal extends Entrada {
-    public double precio;
+    
+    public EntradaNormal() {
+        // Constructor vacío
+    }
 
     public EntradaNormal(String id, Zona zona, String comprador) {
         super(id, zona, comprador);
@@ -238,7 +251,10 @@ class EntradaNormal extends Entrada {
 }
 
 class EntradaReducida extends Entrada {
-    public double precio;
+
+    public EntradaReducida() {
+        // Constructor vacío
+    }
 
     public EntradaReducida(String id, Zona zona, String comprador) {
         super(id, zona, comprador);
@@ -257,7 +273,10 @@ class EntradaReducida extends Entrada {
 }
 
 class EntradaAbonado extends Entrada {
-    public double precio;
+    
+    public EntradaAbonado() {
+        // Constructor vacío
+    }
 
     public EntradaAbonado(String id, Zona zona, String comprador) {
         super(id, zona, comprador);

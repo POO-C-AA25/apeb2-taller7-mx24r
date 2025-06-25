@@ -147,8 +147,8 @@ class Mensaje {
     public String nombreRemitente;
     public String nombreDestinatario;
 
-    // Constructores
     public Mensaje() {
+        // Constructor vacío
     }
 
     public Mensaje(String numRemitente, String numDestinatario) {
@@ -179,8 +179,8 @@ class SMS extends Mensaje {
     // Atributo adicional para SMS
     public String texto;
 
-    // Constructores
     public SMS() {
+        // Constructor vacío
     }
 
     public SMS(String texto, String numRemitente, String numDestinatario) {
@@ -212,8 +212,8 @@ class MMS extends Mensaje {
     // Atributo adicional para MMS
     public String nombreFichero;
 
-    // Constructores
     public MMS() {
+        // Constructor vacío
     }
 
     public MMS(String nombreFichero, String numRemitente, String numDestinatario) {
