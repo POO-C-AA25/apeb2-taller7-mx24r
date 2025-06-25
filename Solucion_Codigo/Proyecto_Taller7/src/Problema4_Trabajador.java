@@ -133,6 +133,7 @@ class Trabajador {
     public String direccion;
     public String dni;
     public Jefe jefe;
+    public double salario;
     
     public Trabajador() {
         // Constructor vacío
@@ -161,7 +162,6 @@ class Trabajador {
 }
 
 class FijoMensual extends Trabajador {
-    public double salarioMensual;
 
     public FijoMensual() {
         // Constructor vacío
@@ -169,14 +169,14 @@ class FijoMensual extends Trabajador {
 
     public FijoMensual(String nombre, String apellidos, String direccion, String dni, Jefe jefe, double salarioMensual) {
         super(nombre, apellidos, direccion, dni, jefe);
-        this.salarioMensual = salarioMensual;
+        this.salario = salarioMensual;
     }
 
     @Override
     public void imprimirNomina() {
         super.imprimirNomina();
         System.out.println("Tipo: Trabajador Fijo Mensual");
-        System.out.printf("Salario: $%.2f", salarioMensual);
+        System.out.printf("Salario: $%.2f", salario);
         System.out.println("\n--------------------------");
     }
 }
@@ -184,7 +184,6 @@ class FijoMensual extends Trabajador {
 class Comisionista extends Trabajador {
     public double ventasRealizadas;
     public double porcentajeComision;
-    public double salarioFinal;
 
     public Comisionista() {
         // Constructor vacío
@@ -198,7 +197,7 @@ class Comisionista extends Trabajador {
 
     @Override
     public void calcularNomina() {
-        this.salarioFinal = ventasRealizadas * (porcentajeComision / 100);
+        this.salario = ventasRealizadas * (porcentajeComision / 100);
     }
 
     @Override
@@ -207,7 +206,7 @@ class Comisionista extends Trabajador {
         System.out.println("Tipo: Trabajador Comisionista");
         System.out.printf("Ventas realizadas: $%.2f", ventasRealizadas);
         System.out.printf("\nPorcentaje comisión: %.2f (por ciento)", porcentajeComision);
-        System.out.printf("\nTotal a pagar: $%.2f", salarioFinal);
+        System.out.printf("\nTotal a pagar: $%.2f", salario);
         System.out.println("\n--------------------------");
     }
 }
@@ -216,7 +215,6 @@ class PorHoras extends Trabajador {
     public int horasTrabajadas;
     public double precioHoraNormal;
     public double precioHoraExtra;
-    public double salarioFinal;
 
     public PorHoras() {
         // Constructor vacío
@@ -232,10 +230,10 @@ class PorHoras extends Trabajador {
     @Override
     public void calcularNomina() {
         if(horasTrabajadas <= 40) {
-            this.salarioFinal = horasTrabajadas * precioHoraNormal;
+            this.salario = horasTrabajadas * precioHoraNormal;
         } else {
             int horasExtra = horasTrabajadas - 40;
-            this.salarioFinal = (40 * precioHoraNormal) + (horasExtra * precioHoraExtra);
+            this.salario = (40 * precioHoraNormal) + (horasExtra * precioHoraExtra);
         }
     }
 
@@ -246,13 +244,12 @@ class PorHoras extends Trabajador {
         System.out.println("Horas trabajadas: " + horasTrabajadas);
         System.out.printf("\nPrecio hora normal: $%.2f", precioHoraNormal);
         System.out.printf("\nPrecio hora extra: $%.2f", precioHoraExtra);
-        System.out.printf("\nTotal a pagar: $%.2f%n", salarioFinal);
+        System.out.printf("\nTotal a pagar: $%.2f%n", salario);
         System.out.println("--------------------------");
     }
 }
 
 class Jefe extends Trabajador {
-    public double salarioFijo;
     
     public Jefe() {
         // Constructor vacío
@@ -260,14 +257,14 @@ class Jefe extends Trabajador {
 
     public Jefe(String nombre, String apellidos, String direccion, String dni, double salarioFijo) {
         super(nombre, apellidos, direccion, dni, null);
-        this.salarioFijo = salarioFijo;
+        this.salario = salarioFijo;
     }
 
     @Override
     public void imprimirNomina() {
         super.imprimirNomina();
         System.out.println("Tipo: Jefe");
-        System.out.printf("Salario fijo: $%.2f", salarioFijo);
+        System.out.printf("Salario fijo: $%.2f", salario);
         System.out.println("\n--------------------------");
     }
 }
